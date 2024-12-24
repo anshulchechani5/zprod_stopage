@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: zproductionstopage
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: MY405100
+          url: https://my405100-api.s4hana.cloud.sap
+        app:
+          name: ZPRDOCSTOPAGE
+          package: ZPM_PRODUCTION_STOPAGE
+          transport: XMVK904153
+        exclude:
+          - /test/
